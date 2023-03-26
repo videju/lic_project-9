@@ -439,7 +439,7 @@ var user_data = {
 	password :  password,
 	policy_prize: policy_prize,
     policy_name:policy_name,
-	Todo_list : todo,
+	Todo_list : todos,
 	last_login: Date.now()
 
 }
