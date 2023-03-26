@@ -144,7 +144,290 @@ auth.createUserWithEmailAndPassword(email,password)
 //decalre user variable
 var user = auth.currentUser
 //add this user t ofirebase database
+/////////////////////////////////////////////////////////////////////////////////
+// window.addEventListener('load', () => {
+// 	todos = JSON.parse(localStorage.getItem('todos')) || [];
+// 	const nameInput = document.querySelector('#name');
+// 	const newTodoForm = document.querySelector('#new-todo-form');
 
+// 	const username = localStorage.getItem('username') || '';
+
+// 	nameInput.value = username;
+
+// 	nameInput.addEventListener('change', (e) => {
+// 		localStorage.setItem('username', e.target.value);
+// 	})
+
+// 	newTodoForm.addEventListener('submit', e => {
+// 		e.preventDefault();
+
+// 		const todo = {
+// 			content_1: e.target.elements.content.value,
+// 			content_2 : e.target.elements.content_2.value,
+// 			content_3 : e.target.elements.content_3.value,
+// 			content_4 : e.target.elements.content_4.value,
+// 			content_5 : e.target.elements.content_5.value,
+// 			category: e.target.elements.category.value,
+// 			done: false,
+// 			createdAt: new Date().getTime()
+// 		}
+
+// 		todos.push(todo);
+
+// 		localStorage.setItem('todos', JSON.stringify(todos));
+
+// 		// Reset the form
+// 		e.target.reset();
+
+// 		DisplayTodos()
+// 	})
+
+// 	DisplayTodos()
+// })
+
+// function DisplayTodos () {
+// 	const todoList = document.querySelector('#todo-list');
+// 	todoList.innerHTML = "";
+
+// 	todos.forEach(todo => {
+// 		const todoItem = document.createElement('div');
+// 		todoItem.classList.add('todo-item');
+
+// 		const label = document.createElement('label');
+// 		const input = document.createElement('input');
+// 		const span = document.createElement('span');
+// 		const content_1 = document.createElement('div');
+// 		const content_2 = document.createElement('div')
+// 		const content_3 = document.createElement('div')
+// 		const content_4 = document.createElement('div')
+// 		const content_5 = document.createElement('div')
+// 		const actions = document.createElement('div');
+// 		const edit = document.createElement('button');
+// 		const deleteButton = document.createElement('button');
+
+// 		input.type = 'checkbox';
+// 		input.checked = todo.done;
+// 		span.classList.add('bubble');
+// 		if (todo.category == 'personal') {
+// 			span.classList.add('personal');
+// 		} else {
+// 			span.classList.add('business');
+// 		}
+// 		content.classList.add('todo-content');
+// 		actions.classList.add('actions');
+// 		edit.classList.add('edit');
+// 		deleteButton.classList.add('delete');
+
+// 		content.innerHTML = `<input type="text" value="${todo.content}" readonly>`;
+// 		content_2.innerHTML = `<input type="text" value="${todo.content_2}" readonly>`;
+// 		content_3.innerHTML = `<input type="text" value="${todo.content_3}" readonly>`;
+// 		content_4.innerHTML = `<input type="text" value="${todo.content_4}" readonly>`;
+		
+// 		edit.innerHTML = 'Edit';
+// 		deleteButton.innerHTML = 'Delete';
+
+// 		label.appendChild(input);
+// 		label.appendChild(span);
+// 		actions.appendChild(edit);
+// 		actions.appendChild(deleteButton);
+// 		todoItem.appendChild(label);
+// 		todoItem.appendChild(content_1);
+// 		todoItem.appendChild(content_2)
+// 		todoItem.appendChild(content_3)
+// 		todoItem.appendChild(content_4)
+// 		todoItem.appendChild(content_5)
+// 		todoItem.appendChild(actions);
+
+// 		todoList.appendChild(todoItem);
+
+// 		if (todo.done) {
+// 			todoItem.classList.add('done');
+// 		}
+		
+// 		input.addEventListener('change', (e) => {
+// 			todo.done = e.target.checked;
+// 			localStorage.setItem('todos', JSON.stringify(todos));
+
+// 			if (todo.done) {
+// 				todoItem.classList.add('done');
+// 			} else {
+// 				todoItem.classList.remove('done');
+// 			}
+
+// 			DisplayTodos()
+
+// 		})
+
+// 		edit.addEventListener('click', (e) => {
+// 			const input = content.querySelector('input');
+// 			input.removeAttribute('readonly');
+// 			input.focus();
+// 			input.addEventListener('blur', (e) => {
+// 				input.setAttribute('readonly', true);
+// 				todo.content = e.target.value;
+// 				todo.content_2 = e.target.value;
+// 				localStorage.setItem('todos', JSON.stringify(todos));
+// 				DisplayTodos()
+
+// 			})
+// 		})
+
+// 		deleteButton.addEventListener('click', (e) => {
+// 			todos = todos.filter(t => t != todo);
+// 			localStorage.setItem('todos', JSON.stringify(todos));
+// 			DisplayTodos()
+// 		})
+
+// 	})
+// }
+
+// ///////////////////////////////////////////////////
+window.addEventListener('load', () => {
+	todos = JSON.parse(localStorage.getItem('todos')) || [];
+	const nameInput = document.querySelector('#name');
+	const newTodoForm = document.querySelector('#new-todo-form');
+
+	const username = localStorage.getItem('username') || '';
+
+	nameInput.value = username;
+
+	nameInput.addEventListener('change', (e) => {
+		localStorage.setItem('username', e.target.value);
+	})
+
+	newTodoForm.addEventListener('submit', e => {
+		e.preventDefault();
+
+		const todo = {
+			content_1: e.target.elements.content_1.value,
+			content_2 : e.target.elements.content_2.value,
+			content_3 : e.target.elements.content_3.value,
+			content_4 : e.target.elements.content_4.value,
+			content_5 : e.target.elements.content_5.value,
+			category: e.target.elements.category.value,
+			
+			done: false,
+			createdAt: new Date().getTime()
+		}
+
+		todos.push(todo);
+
+		localStorage.setItem('todos', JSON.stringify(todos));
+
+		// Reset the form
+		e.target.reset();
+
+		DisplayTodos()
+	})
+        
+	DisplayTodos()
+	
+})
+
+function DisplayTodos () {
+	const todoList = document.querySelector('#todo-list');
+	todoList.innerHTML = "";
+
+	todos.forEach(todo => {
+		const todoItem = document.createElement('div');
+		todoItem.classList.add('todo-item');
+
+		const label = document.createElement('label');
+		const input = document.createElement('input');
+		const span = document.createElement('span');
+		const content_1 = document.createElement('div');
+		const content_2 = document.createElement('div')
+		const content_3 = document.createElement('div')
+		const content_4 = document.createElement('div')
+		const content_5 = document.createElement('div')
+		const actions = document.createElement('div');
+		const edit = document.createElement('button');
+		const deleteButton = document.createElement('button');
+
+		input.type = 'checkbox';
+		input.checked = todo.done;
+		span.classList.add('bubble');
+		if (todo.category == 'personal') {
+			span.classList.add('personal');
+		} else {
+			span.classList.add('business');
+		}
+		content.classList.add('todo-content');
+		actions.classList.add('actions');
+		edit.classList.add('edit');
+		deleteButton.classList.add('delete');
+
+		content_1.innerHTML = `<input type="text" value="${todo.content}" readonly>`;
+		content_2.innerHTML = `<input type="text" value="${todo.content_2}" readonly>`;
+		content_3.innerHTML = `<input type="text" value="${todo.content_3}" readonly>`;
+		content_4.innerHTML = `<input type="text" value="${todo.content_4}" readonly>`;
+		content_5.innerHTML = `<input type="text" value="${todo.content_5}" readonly>`
+		
+		edit.innerHTML = 'Edit';
+		deleteButton.innerHTML = 'Delete';
+
+		label.appendChild(input);
+		label.appendChild(span);
+		actions.appendChild(edit);
+		actions.appendChild(deleteButton);
+		todoItem.appendChild(label);
+		todoItem.appendChild(content_1);
+		todoItem.appendChild(content_2)
+		todoItem.appendChild(content_3)
+		todoItem.appendChild(content_4)
+		todoItem.appendChild(content_5)
+		todoItem.appendChild(actions);
+
+		todoList.appendChild(todoItem);
+
+		if (todo.done) {
+			todoItem.classList.add('done');
+		}
+		
+		input.addEventListener('change', (e) => {
+			todo.done = e.target.checked;
+			localStorage.setItem('todos', JSON.stringify(todos));
+
+			if (todo.done) {
+				todoItem.classList.add('done');
+			} else {
+				todoItem.classList.remove('done');
+			}
+
+			DisplayTodos()
+
+		})
+
+		edit.addEventListener('click', (e) => {
+			const input = content.querySelector('input');
+			input.removeAttribute('readonly');
+			input.focus();
+			input.addEventListener('blur', (e) => {
+				input.setAttribute('readonly', true);
+				todo.content_1 = e.target.value;
+				todo.content_2 = e.target.value;
+				todo.content_3 = e.target.value;
+				todo.content_4 = e.target.value;
+				todo.content_5 = e.target.value;
+				localStorage.setItem('todos', JSON.stringify(todos));
+				DisplayTodos()
+
+			})
+		})
+
+		deleteButton.addEventListener('click', (e) => {
+			todos = todos.filter(t => t != todo);
+			Todos = localStorage.setItem('todos', JSON.stringify(todos));
+			DisplayTodos()
+		})
+
+	})
+	
+}
+ function recoverData() {
+ 	todos  = database.set
+ }
+//////////////////////////////////////////////////////////////////////////////////////
 //create user data
 var database_ref = database.ref()
 
@@ -156,7 +439,7 @@ var user_data = {
 	password :  password,
 	policy_prize: policy_prize,
     policy_name:policy_name,
-	Todo_list : Todo_list,
+	Todo_list : todo,
 	last_login: Date.now()
 
 }
@@ -332,285 +615,285 @@ timeCountDown()
 setInterval(timeCountDown, 1000);
 
 
-window.addEventListener('load', () => {
-	todos = JSON.parse(localStorage.getItem('todos')) || [];
-	const nameInput = document.querySelector('#name');
-	const newTodoForm = document.querySelector('#new-todo-form');
+// window.addEventListener('load', () => {
+// 	todos = JSON.parse(localStorage.getItem('todos')) || [];
+// 	const nameInput = document.querySelector('#name');
+// 	const newTodoForm = document.querySelector('#new-todo-form');
 
-	const username = localStorage.getItem('username') || '';
+// 	const username = localStorage.getItem('username') || '';
 
-	nameInput.value = username;
+// 	nameInput.value = username;
 
-	nameInput.addEventListener('change', (e) => {
-		localStorage.setItem('username', e.target.value);
-	})
+// 	nameInput.addEventListener('change', (e) => {
+// 		localStorage.setItem('username', e.target.value);
+// 	})
 
-	newTodoForm.addEventListener('submit', e => {
-		e.preventDefault();
+// 	newTodoForm.addEventListener('submit', e => {
+// 		e.preventDefault();
 
-		const todo = {
-			content_1: e.target.elements.content.value,
-			content_2 : e.target.elements.content_2.value,
-			content_3 : e.target.elements.content_3.value,
-			content_4 : e.target.elements.content_4.value,
-			content_5 : e.target.elements.content_5.value,
-			category: e.target.elements.category.value,
-			done: false,
-			createdAt: new Date().getTime()
-		}
+// 		const todo = {
+// 			content_1: e.target.elements.content.value,
+// 			content_2 : e.target.elements.content_2.value,
+// 			content_3 : e.target.elements.content_3.value,
+// 			content_4 : e.target.elements.content_4.value,
+// 			content_5 : e.target.elements.content_5.value,
+// 			category: e.target.elements.category.value,
+// 			done: false,
+// 			createdAt: new Date().getTime()
+// 		}
 
-		todos.push(todo);
+// 		todos.push(todo);
 
-		localStorage.setItem('todos', JSON.stringify(todos));
+// 		localStorage.setItem('todos', JSON.stringify(todos));
 
-		// Reset the form
-		e.target.reset();
+// 		// Reset the form
+// 		e.target.reset();
 
-		DisplayTodos()
-	})
+// 		DisplayTodos()
+// 	})
 
-	DisplayTodos()
-})
+// 	DisplayTodos()
+// })
 
-function DisplayTodos () {
-	const todoList = document.querySelector('#todo-list');
-	todoList.innerHTML = "";
+// function DisplayTodos () {
+// 	const todoList = document.querySelector('#todo-list');
+// 	todoList.innerHTML = "";
 
-	todos.forEach(todo => {
-		const todoItem = document.createElement('div');
-		todoItem.classList.add('todo-item');
+// 	todos.forEach(todo => {
+// 		const todoItem = document.createElement('div');
+// 		todoItem.classList.add('todo-item');
 
-		const label = document.createElement('label');
-		const input = document.createElement('input');
-		const span = document.createElement('span');
-		const content_1 = document.createElement('div');
-		const content_2 = document.createElement('div')
-		const content_3 = document.createElement('div')
-		const content_4 = document.createElement('div')
-		const content_5 = document.createElement('div')
-		const actions = document.createElement('div');
-		const edit = document.createElement('button');
-		const deleteButton = document.createElement('button');
+// 		const label = document.createElement('label');
+// 		const input = document.createElement('input');
+// 		const span = document.createElement('span');
+// 		const content_1 = document.createElement('div');
+// 		const content_2 = document.createElement('div')
+// 		const content_3 = document.createElement('div')
+// 		const content_4 = document.createElement('div')
+// 		const content_5 = document.createElement('div')
+// 		const actions = document.createElement('div');
+// 		const edit = document.createElement('button');
+// 		const deleteButton = document.createElement('button');
 
-		input.type = 'checkbox';
-		input.checked = todo.done;
-		span.classList.add('bubble');
-		if (todo.category == 'personal') {
-			span.classList.add('personal');
-		} else {
-			span.classList.add('business');
-		}
-		content.classList.add('todo-content');
-		actions.classList.add('actions');
-		edit.classList.add('edit');
-		deleteButton.classList.add('delete');
+// 		input.type = 'checkbox';
+// 		input.checked = todo.done;
+// 		span.classList.add('bubble');
+// 		if (todo.category == 'personal') {
+// 			span.classList.add('personal');
+// 		} else {
+// 			span.classList.add('business');
+// 		}
+// 		content.classList.add('todo-content');
+// 		actions.classList.add('actions');
+// 		edit.classList.add('edit');
+// 		deleteButton.classList.add('delete');
 
-		content.innerHTML = `<input type="text" value="${todo.content}" readonly>`;
-		content_2.innerHTML = `<input type="text" value="${todo.content_2}" readonly>`;
-		content_3.innerHTML = `<input type="text" value="${todo.content_3}" readonly>`;
-		content_4.innerHTML = `<input type="text" value="${todo.content_4}" readonly>`;
+// 		content.innerHTML = `<input type="text" value="${todo.content}" readonly>`;
+// 		content_2.innerHTML = `<input type="text" value="${todo.content_2}" readonly>`;
+// 		content_3.innerHTML = `<input type="text" value="${todo.content_3}" readonly>`;
+// 		content_4.innerHTML = `<input type="text" value="${todo.content_4}" readonly>`;
 		
-		edit.innerHTML = 'Edit';
-		deleteButton.innerHTML = 'Delete';
+// 		edit.innerHTML = 'Edit';
+// 		deleteButton.innerHTML = 'Delete';
 
-		label.appendChild(input);
-		label.appendChild(span);
-		actions.appendChild(edit);
-		actions.appendChild(deleteButton);
-		todoItem.appendChild(label);
-		todoItem.appendChild(content_1);
-		todoItem.appendChild(content_2)
-		todoItem.appendChild(content_3)
-		todoItem.appendChild(content_4)
-		todoItem.appendChild(content_5)
-		todoItem.appendChild(actions);
+// 		label.appendChild(input);
+// 		label.appendChild(span);
+// 		actions.appendChild(edit);
+// 		actions.appendChild(deleteButton);
+// 		todoItem.appendChild(label);
+// 		todoItem.appendChild(content_1);
+// 		todoItem.appendChild(content_2)
+// 		todoItem.appendChild(content_3)
+// 		todoItem.appendChild(content_4)
+// 		todoItem.appendChild(content_5)
+// 		todoItem.appendChild(actions);
 
-		todoList.appendChild(todoItem);
+// 		todoList.appendChild(todoItem);
 
-		if (todo.done) {
-			todoItem.classList.add('done');
-		}
+// 		if (todo.done) {
+// 			todoItem.classList.add('done');
+// 		}
 		
-		input.addEventListener('change', (e) => {
-			todo.done = e.target.checked;
-			localStorage.setItem('todos', JSON.stringify(todos));
+// 		input.addEventListener('change', (e) => {
+// 			todo.done = e.target.checked;
+// 			localStorage.setItem('todos', JSON.stringify(todos));
 
-			if (todo.done) {
-				todoItem.classList.add('done');
-			} else {
-				todoItem.classList.remove('done');
-			}
+// 			if (todo.done) {
+// 				todoItem.classList.add('done');
+// 			} else {
+// 				todoItem.classList.remove('done');
+// 			}
 
-			DisplayTodos()
+// 			DisplayTodos()
 
-		})
+// 		})
 
-		edit.addEventListener('click', (e) => {
-			const input = content.querySelector('input');
-			input.removeAttribute('readonly');
-			input.focus();
-			input.addEventListener('blur', (e) => {
-				input.setAttribute('readonly', true);
-				todo.content = e.target.value;
-				todo.content_2 = e.target.value;
-				localStorage.setItem('todos', JSON.stringify(todos));
-				DisplayTodos()
+// 		edit.addEventListener('click', (e) => {
+// 			const input = content.querySelector('input');
+// 			input.removeAttribute('readonly');
+// 			input.focus();
+// 			input.addEventListener('blur', (e) => {
+// 				input.setAttribute('readonly', true);
+// 				todo.content = e.target.value;
+// 				todo.content_2 = e.target.value;
+// 				localStorage.setItem('todos', JSON.stringify(todos));
+// 				DisplayTodos()
 
-			})
-		})
+// 			})
+// 		})
 
-		deleteButton.addEventListener('click', (e) => {
-			todos = todos.filter(t => t != todo);
-			localStorage.setItem('todos', JSON.stringify(todos));
-			DisplayTodos()
-		})
+// 		deleteButton.addEventListener('click', (e) => {
+// 			todos = todos.filter(t => t != todo);
+// 			localStorage.setItem('todos', JSON.stringify(todos));
+// 			DisplayTodos()
+// 		})
 
-	})
-}
-
-///////////////////////////////////////////////////
-window.addEventListener('load', () => {
-	todos = JSON.parse(localStorage.getItem('todos')) || [];
-	const nameInput = document.querySelector('#name');
-	const newTodoForm = document.querySelector('#new-todo-form');
-
-	const username = localStorage.getItem('username') || '';
-
-	nameInput.value = username;
-
-	nameInput.addEventListener('change', (e) => {
-		localStorage.setItem('username', e.target.value);
-	})
-
-	newTodoForm.addEventListener('submit', e => {
-		e.preventDefault();
-
-		const todo = {
-			content: e.target.elements.content_1.value,
-			content_2 : e.target.elements.content_2.value,
-			content_3 : e.target.elements.content_3.value,
-			content_4 : e.target.elements.content_4.value,
-			content_5 : e.target.elements.content_5.value,
-			category: e.target.elements.category.value,
-			
-			done: false,
-			createdAt: new Date().getTime()
-		}
-
-		todos.push(todo);
-
-		localStorage.setItem('todos', JSON.stringify(todos));
-
-		// Reset the form
-		e.target.reset();
-
-		DisplayTodos()
-	})
-        
-	DisplayTodos()
-	
-})
-
-function DisplayTodos () {
-	const todoList = document.querySelector('#todo-list');
-	todoList.innerHTML = "";
-
-	todos.forEach(todo => {
-		const todoItem = document.createElement('div');
-		todoItem.classList.add('todo-item');
-
-		const label = document.createElement('label');
-		const input = document.createElement('input');
-		const span = document.createElement('span');
-		const content_1 = document.createElement('div');
-		const content_2 = document.createElement('div')
-		const content_3 = document.createElement('div')
-		const content_4 = document.createElement('div')
-		const content_5 = document.createElement('div')
-		const actions = document.createElement('div');
-		const edit = document.createElement('button');
-		const deleteButton = document.createElement('button');
-
-		input.type = 'checkbox';
-		input.checked = todo.done;
-		span.classList.add('bubble');
-		if (todo.category == 'personal') {
-			span.classList.add('personal');
-		} else {
-			span.classList.add('business');
-		}
-		content.classList.add('todo-content');
-		actions.classList.add('actions');
-		edit.classList.add('edit');
-		deleteButton.classList.add('delete');
-
-		content_1.innerHTML = `<input type="text" value="${todo.content}" readonly>`;
-		content_2.innerHTML = `<input type="text" value="${todo.content_2}" readonly>`;
-		content_3.innerHTML = `<input type="text" value="${todo.content_3}" readonly>`;
-		content_4.innerHTML = `<input type="text" value="${todo.content_4}" readonly>`;
-		content_5.innerHTML = `<input type="text" value="${todo.content_5}" readonly>`
-		
-		edit.innerHTML = 'Edit';
-		deleteButton.innerHTML = 'Delete';
-
-		label.appendChild(input);
-		label.appendChild(span);
-		actions.appendChild(edit);
-		actions.appendChild(deleteButton);
-		todoItem.appendChild(label);
-		todoItem.appendChild(content_1);
-		todoItem.appendChild(content_2)
-		todoItem.appendChild(content_3)
-		todoItem.appendChild(content_4)
-		todoItem.appendChild(content_5)
-		todoItem.appendChild(actions);
-
-		todoList.appendChild(todoItem);
-
-		if (todo.done) {
-			todoItem.classList.add('done');
-		}
-		
-		input.addEventListener('change', (e) => {
-			todo.done = e.target.checked;
-			localStorage.setItem('todos', JSON.stringify(todos));
-
-			if (todo.done) {
-				todoItem.classList.add('done');
-			} else {
-				todoItem.classList.remove('done');
-			}
-
-			DisplayTodos()
-
-		})
-
-		edit.addEventListener('click', (e) => {
-			const input = content.querySelector('input');
-			input.removeAttribute('readonly');
-			input.focus();
-			input.addEventListener('blur', (e) => {
-				input.setAttribute('readonly', true);
-				todo.content_1 = e.target.value;
-				todo.content_2 = e.target.value;
-				todo.content_3 = e.target.value;
-				todo.content_4 = e.target.value;
-				todo.content_5 = e.target.value;
-				localStorage.setItem('todos', JSON.stringify(todos));
-				DisplayTodos()
-
-			})
-		})
-
-		deleteButton.addEventListener('click', (e) => {
-			todos = todos.filter(t => t != todo);
-			Todos = localStorage.setItem('todos', JSON.stringify(todos));
-			DisplayTodos()
-		})
-
-	})
-	
-}
-// function recoverData() {
-// 	todos  = 
+// 	})
 // }
+
+// ///////////////////////////////////////////////////
+// window.addEventListener('load', () => {
+// 	todos = JSON.parse(localStorage.getItem('todos')) || [];
+// 	const nameInput = document.querySelector('#name');
+// 	const newTodoForm = document.querySelector('#new-todo-form');
+
+// 	const username = localStorage.getItem('username') || '';
+
+// 	nameInput.value = username;
+
+// 	nameInput.addEventListener('change', (e) => {
+// 		localStorage.setItem('username', e.target.value);
+// 	})
+
+// 	newTodoForm.addEventListener('submit', e => {
+// 		e.preventDefault();
+
+// 		const todo = {
+// 			content_1: e.target.elements.content_1.value,
+// 			content_2 : e.target.elements.content_2.value,
+// 			content_3 : e.target.elements.content_3.value,
+// 			content_4 : e.target.elements.content_4.value,
+// 			content_5 : e.target.elements.content_5.value,
+// 			category: e.target.elements.category.value,
+			
+// 			done: false,
+// 			createdAt: new Date().getTime()
+// 		}
+
+// 		todos.push(todo);
+
+// 		localStorage.setItem('todos', JSON.stringify(todos));
+
+// 		// Reset the form
+// 		e.target.reset();
+
+// 		DisplayTodos()
+// 	})
+        
+// 	DisplayTodos()
+	
+// })
+
+// function DisplayTodos () {
+// 	const todoList = document.querySelector('#todo-list');
+// 	todoList.innerHTML = "";
+
+// 	todos.forEach(todo => {
+// 		const todoItem = document.createElement('div');
+// 		todoItem.classList.add('todo-item');
+
+// 		const label = document.createElement('label');
+// 		const input = document.createElement('input');
+// 		const span = document.createElement('span');
+// 		const content_1 = document.createElement('div');
+// 		const content_2 = document.createElement('div')
+// 		const content_3 = document.createElement('div')
+// 		const content_4 = document.createElement('div')
+// 		const content_5 = document.createElement('div')
+// 		const actions = document.createElement('div');
+// 		const edit = document.createElement('button');
+// 		const deleteButton = document.createElement('button');
+
+// 		input.type = 'checkbox';
+// 		input.checked = todo.done;
+// 		span.classList.add('bubble');
+// 		if (todo.category == 'personal') {
+// 			span.classList.add('personal');
+// 		} else {
+// 			span.classList.add('business');
+// 		}
+// 		content.classList.add('todo-content');
+// 		actions.classList.add('actions');
+// 		edit.classList.add('edit');
+// 		deleteButton.classList.add('delete');
+
+// 		content_1.innerHTML = `<input type="text" value="${todo.content}" readonly>`;
+// 		content_2.innerHTML = `<input type="text" value="${todo.content_2}" readonly>`;
+// 		content_3.innerHTML = `<input type="text" value="${todo.content_3}" readonly>`;
+// 		content_4.innerHTML = `<input type="text" value="${todo.content_4}" readonly>`;
+// 		content_5.innerHTML = `<input type="text" value="${todo.content_5}" readonly>`
+		
+// 		edit.innerHTML = 'Edit';
+// 		deleteButton.innerHTML = 'Delete';
+
+// 		label.appendChild(input);
+// 		label.appendChild(span);
+// 		actions.appendChild(edit);
+// 		actions.appendChild(deleteButton);
+// 		todoItem.appendChild(label);
+// 		todoItem.appendChild(content_1);
+// 		todoItem.appendChild(content_2)
+// 		todoItem.appendChild(content_3)
+// 		todoItem.appendChild(content_4)
+// 		todoItem.appendChild(content_5)
+// 		todoItem.appendChild(actions);
+
+// 		todoList.appendChild(todoItem);
+
+// 		if (todo.done) {
+// 			todoItem.classList.add('done');
+// 		}
+		
+// 		input.addEventListener('change', (e) => {
+// 			todo.done = e.target.checked;
+// 			localStorage.setItem('todos', JSON.stringify(todos));
+
+// 			if (todo.done) {
+// 				todoItem.classList.add('done');
+// 			} else {
+// 				todoItem.classList.remove('done');
+// 			}
+
+// 			DisplayTodos()
+
+// 		})
+
+// 		edit.addEventListener('click', (e) => {
+// 			const input = content.querySelector('input');
+// 			input.removeAttribute('readonly');
+// 			input.focus();
+// 			input.addEventListener('blur', (e) => {
+// 				input.setAttribute('readonly', true);
+// 				todo.content_1 = e.target.value;
+// 				todo.content_2 = e.target.value;
+// 				todo.content_3 = e.target.value;
+// 				todo.content_4 = e.target.value;
+// 				todo.content_5 = e.target.value;
+// 				localStorage.setItem('todos', JSON.stringify(todos));
+// 				DisplayTodos()
+
+// 			})
+// 		})
+
+// 		deleteButton.addEventListener('click', (e) => {
+// 			todos = todos.filter(t => t != todo);
+// 			Todos = localStorage.setItem('todos', JSON.stringify(todos));
+// 			DisplayTodos()
+// 		})
+
+// 	})
+	
+// }
+//  function recoverData() {
+//  	todos  = database.set
+//  }
